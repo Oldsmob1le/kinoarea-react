@@ -2,7 +2,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { Banner } from '@/ui/icons';
-import ButtonFooter from '@/components/footer/button';
+import ButtonFooter from '@/ui/buttons/button';
 
 const catalogMain = () => {
     return (
