@@ -20,8 +20,8 @@ const catalogMain = () => {
                     <div className="text-display-4">
                     <h1>Сейчас в кино</h1>
                     </div>
-                    <div className="w-[51px] h-0 border-2 border-white"></div>
-                    <div className="flex  text-gray-text" style={{ letterSpacing: '1px' }}>
+                    <div className="w-[51px] h-0 border-2 border-white "></div>
+                    <div className="flex gap-2xl text-gray-text" style={{ letterSpacing: '1px' }}>
                     <a href="#" className="text-white">Все</a>
                     <a href="#">Боевики</a>
                     <a href="#">Приключения</a>

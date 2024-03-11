@@ -4,8 +4,8 @@ import React from 'react';
 const footer = () => {
     return (
         <>
-            <div className="text-slate-500 flex flex-col items-center gap-4">
-                <div className="text-white flex flex-col gap-4 md:flex-row md:gap-6">
+            <div className="text-gray-text flex flex-col items-center gap-s">
+                <div className="text-white flex flex-col gap-4 mobile:flex-row mobile:gap-l">
                     <a href="#">Афиша</a>
                     <a href="#">Новости</a>
                     <a href="#">Персоны</a>
