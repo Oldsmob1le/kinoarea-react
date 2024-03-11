@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Footer from "@/components/footer/footer";
-import Header from "@/components/header/header";
-
 
 export const metadata: Metadata = {
-  title: "Kinoarea",
-  description: "Kinoarea - Афиша",
+  title: "SkyBridge",
+  description: "SkyBridge - сайт авиабилетов",
 };
 
 export default function RootLayout({
@@ -16,10 +13,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <body className="bg-[#1E2538] max-w-[1400px] m-auto flex flex-col items-center">
-        <Header />
+      <body className="max-w-[1400px] m-auto flex flex-col items-center">
         {children}
-        <Footer />
       </body>
     </html>
   );
