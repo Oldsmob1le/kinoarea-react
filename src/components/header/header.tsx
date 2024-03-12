@@ -16,12 +16,31 @@ const header = () => {
   };
 
   return (
-    <div className="text-gray-1 flex w-full justify-between mt-l">
-      <div className="flex items-center">
+    <div className="text-gray-1 flex w-full justify-between mt-xl">
+
+<Image
+    className="z-[-1]"
+    src={Banner}
+    alt="Banner"
+    layout="responsive"
+    objectFit="cover"
+    objectPosition="center"
+    style={{
+        position: 'absolute',
+        width: '2103.21px',
+        height: '375px',
+        left: '-70px',
+        right: '-113.21px',
+        top: '-15px',
+        bottom: '1214px',
+    }}
+/>
+      
+      <div style={logoStyle} >
         <LogoIcon />
-        <p style={logoStyle}>Sky Bridge</p>
+        <p className='opacity-0 mobile:opacity-[1]'>Sky Bridge</p>
       </div>
-      <div className="flex items-center gap-m text-h1">
+      <div className="flex items-center mobile:gap-xl mobile:text-h1">
         <a href="#">Билеты</a>
         <a href="#">Расписание рейсов</a>
         <a href="#">Услуги</a>
