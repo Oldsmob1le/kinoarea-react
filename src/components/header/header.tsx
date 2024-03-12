@@ -27,12 +27,11 @@ const header = () => {
     objectPosition="center"
     style={{
         position: 'absolute',
-        width: '2103.21px',
+        width: '100%',
         height: '375px',
-        left: '-70px',
+        left: '-1px',
         right: '-113.21px',
         top: '-15px',
-        bottom: '1214px',
     }}
 />
       

@@ -1,8 +1,5 @@
-import Image from "next/image";
-import Banner from "@/ui/icons/banner.png";
-import Support from "@/components/footer/support";
-import search from
-
+import Search from '@/components/main/search';
+import React from 'react';
 
 export default function Home() {
   return (
