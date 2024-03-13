@@ -8,7 +8,7 @@ import SearchButton from './searchButton';
 
 const CustomDropdownIndicator = (props: any) => {
   if (props.selectProps.name === 'from' && props.selectProps.inputIndex === 0) {
-    return <Shuffle style={{ marginLeft: '-10px' }} />;
+    return <Shuffle style={{ marginLeft: '-20px' }} />;
   }
   return null;
 };
@@ -38,7 +38,7 @@ const Search = () => {
 
   const inputFieldStyle = {
     margin: '10px',
-    padding: '7px',
+    padding: '10px',
     paddingLeft: '15px',
     borderRadius: '10px',
     border: 'none',
@@ -47,12 +47,13 @@ const Search = () => {
   const selectStyles = {
     control: (provided: any, state: any) => ({
       ...provided,
-      width: '200px',
+      width: '190px',
+      height: '44px',
       margin: '8px',
-      marginLeft: '30px',
+      cursor: 'text',
       border: 'none',
       borderRadius: '10px',
-      boxShadow: state.isFocused ? '0 0 0 2px rgba(3, 102, 214, 0.3)' : 'none',
+      boxShadow: state.isFocused ? 'none' : 'none',
       '&:hover': {
         border: 'none',
       },
@@ -71,7 +72,7 @@ const Search = () => {
   return (
     <div className=''>
       <h2>Поиск билетов</h2>
-      <div style={{ ...inputStyle, margin: '20px auto' }}>
+      <div style={{ ...inputStyle, margin: '20px auto' }} className='pr-[30px] pl-[20px]'>
         <Select
           options={optionsFrom}
           placeholder='Откуда'
@@ -85,7 +86,7 @@ const Search = () => {
         <Select
           options={optionsTo}
           placeholder='Куда'
-          styles={selectStyles}
+          styles={selectStyles} // Применяем стили к этому компоненту
           components={{
             DropdownIndicator: CustomDropdownIndicator,
           }}
@@ -95,7 +96,7 @@ const Search = () => {
           onChange={(date: Date) => setSelectedDate(date)}
           placeholderText='Даты'
           dateFormat='dd.MM.yyyy'
-          customInput={<input style={inputFieldStyle} />}
+          customInput={<input style={inputFieldStyle} className='outline-0' />}
         />
         <input
           type='number'
@@ -103,8 +104,8 @@ const Search = () => {
           placeholder='Пассажиры'
           min='0'
           step='1'
-          style={inputFieldStyle}
-          
+          style={inputFieldStyle} className='outline-0'
+
         />
         <SearchButton />
       </div>

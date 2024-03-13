@@ -4,10 +4,9 @@ const SearchButton = () => {
   const buttonStyles = {
     background: 'white',
     width: '190px',
-    height: '40px',
+    height: '45px',
     borderRadius: '10px',
     marginLeft: '30px',
-    marginRight: '30px',
   };
 
   return (
