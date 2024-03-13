@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import Select, { components } from 'react-select';
+import Select from 'react-select';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Shuffle } from '@/ui/icons';
@@ -8,7 +8,7 @@ import SearchButton from './searchButton';
 
 const CustomDropdownIndicator = (props: any) => {
   if (props.selectProps.name === 'from' && props.selectProps.inputIndex === 0) {
-    return <Shuffle style={{ marginLeft: '-20px' }} />;
+    return <Shuffle style={{ marginLeft: '-40px', marginTop: '4px' }} />;
   }
   return null;
 };
@@ -23,8 +23,16 @@ const optionsTo = [
   { value: 'cityB', label: 'Город B' },
 ];
 
+const passengerOptions = [
+  { value: 1, label: '1' },
+  { value: 2, label: '2' },
+  { value: 3, label: '3' },
+  { value: 4, label: '4' },
+];
+
 const Search = () => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [selectedPassengers, setSelectedPassengers] = useState<{ value: number; label: string } | null>(null);
 
   const inputStyle = {
     display: 'flex',
@@ -98,14 +106,12 @@ const Search = () => {
           dateFormat='dd.MM.yyyy'
           customInput={<input style={inputFieldStyle} className='outline-0' />}
         />
-        <input
-          type='number'
-          id='passengers'
+        <Select
+          options={passengerOptions}
           placeholder='Пассажиры'
-          min='0'
-          step='1'
-          style={inputFieldStyle} className='outline-0'
-
+          styles={selectStyles}
+          value={selectedPassengers}
+          onChange={(selectedOption) => setSelectedPassengers(selectedOption)}
         />
         <SearchButton />
       </div>
