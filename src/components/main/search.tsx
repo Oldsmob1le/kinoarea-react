@@ -8,7 +8,7 @@ import SearchButton from './searchButton';
 
 const CustomDropdownIndicator = (props: any) => {
   if (props.selectProps.name === 'from' && props.selectProps.inputIndex === 0) {
-    return <Shuffle style={{ marginLeft: '-40px', marginTop: '4px' }} />;
+    return <Shuffle style={{ marginLeft: '-40px', marginTop: '2px' }} />;
   }
   return null;
 };
@@ -78,7 +78,7 @@ const Search = () => {
   };
 
   return (
-    <div className='mt-3xl'>
+    <div className='mt-5xl'>
       <h2 className='text-gray-1 text-display-2 font-semibold'>Поиск билетов</h2>
       <div style={{ ...inputStyle, margin: '20px auto' }} className='pr-[40px] pl-[50px]'>
         <Select
