@@ -38,9 +38,9 @@ const Search = () => {
     display: 'flex',
     alignItems: 'center',
     borderRadius: '20px',
-    background: 'rgb(241, 249, 252)',
-    opacity: '0.89',
+    background: 'rgb(241, 249, 252, 0.7)',
     maxWidth: '1300px',
+    opacity: '0.9',
     height: '120px',
   };
 
@@ -78,9 +78,9 @@ const Search = () => {
   };
 
   return (
-    <div className=''>
-      <h2>Поиск билетов</h2>
-      <div style={{ ...inputStyle, margin: '20px auto' }} className='pr-[30px] pl-[20px]'>
+    <div className='mt-3xl'>
+      <h2 className='text-gray-1 text-display-2 font-semibold'>Поиск билетов</h2>
+      <div style={{ ...inputStyle, margin: '20px auto' }} className='pr-[40px] pl-[50px]'>
         <Select
           options={optionsFrom}
           placeholder='Откуда'
@@ -94,7 +94,7 @@ const Search = () => {
         <Select
           options={optionsTo}
           placeholder='Куда'
-          styles={selectStyles} // Применяем стили к этому компоненту
+          styles={selectStyles}
           components={{
             DropdownIndicator: CustomDropdownIndicator,
           }}
