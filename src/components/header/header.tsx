@@ -1,6 +1,7 @@
 'use client';
-import { LogoIcon, MenuIcon } from '@/ui/icons'
-import React, { useState } from 'react'
+'use client';
+import { LogoIcon, MenuIcon, UserIcon } from '@/ui/icons'; // Assuming there's an icon component for the user account
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { Banner } from '@/ui/icons';
 
@@ -46,7 +47,6 @@ const Header = () => {
         <p className=''>Sky Bridge</p>
       </div>
 
-
       <div className="hidden tablet-s:flex items-center gap-xl text-h1">
         <a href="#">Билеты</a>
         <a href="#">Расписание рейсов</a>
@@ -56,10 +56,12 @@ const Header = () => {
         <a href="#">Личный кабинет</a>
       </div>
 
-      <div className="tablet-s:hidden absolute top-7 right-7">
+      <div className="tablet-s:hidden absolute top-7 right-7 flex items-center">
         <button onClick={toggleMenu}>
           <MenuIcon />
         </button>
+        {/* Add the user account icon here */}
+        <UserIcon />
       </div>
 
       <div className={`flex tablet-s:hidden items-end mr-3xl  ${isMenuOpen ? 'flex-col' : 'hidden'}`}>
@@ -74,4 +76,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default Header;
