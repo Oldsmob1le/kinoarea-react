@@ -23,7 +23,7 @@ const Header = () => {
   };
 
   return (
-    <div className="text-gray-1 flex flex-col tablet-s:flex-row w-full justify-between mt-xl">
+    <div className="text-gray-1 flex flex-col tablet:flex-row w-full justify-between mt-xl">
 
       <Image
         className="z-[-1]"
@@ -44,10 +44,10 @@ const Header = () => {
 
       <div style={logoStyle}>
         <LogoIcon />
-        <p className=''>Sky Bridge</p>
+        <p>Sky Bridge</p>
       </div>
 
-      <div className="hidden tablet-s:flex items-center gap-xl text-h1">
+      <div className="hidden tablet:flex items-center gap-xl text-h1">
         <a href="#">Билеты</a>
         <a href="#">Расписание рейсов</a>
         <a href="#">Услуги</a>
@@ -56,15 +56,15 @@ const Header = () => {
         <a href="#">Личный кабинет</a>
       </div>
 
-      <div className="tablet-s:hidden absolute top-7 right-7 flex items-center">
+      <div className="tablet:hidden absolute top-7 right-7 flex items-center gap-xs">
+      <UserIcon />
         <button onClick={toggleMenu}>
           <MenuIcon />
         </button>
         {/* Add the user account icon here */}
-        <UserIcon />
       </div>
 
-      <div className={`flex tablet-s:hidden items-end mr-3xl  ${isMenuOpen ? 'flex-col' : 'hidden'}`}>
+      <div className={`flex tablet:hidden items-end mr-3xl  ${isMenuOpen ? 'flex-col' : 'hidden'}`}>
         <a href="#" className="mb-xs">Билеты</a>
         <a href="#" className="mb-xs">Услуги</a>
         <a href="#" className="mb-xs">О нас</a>
