@@ -1,6 +1,5 @@
 'use client';
-'use client';
-import { LogoIcon, MenuIcon, UserIcon } from '@/ui/icons'; // Assuming there's an icon component for the user account
+import { LogoIcon, MenuIcon, UserIcon } from '@/ui/icons';
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { Banner } from '@/ui/icons';
@@ -42,12 +41,12 @@ const Header = () => {
         }}
       />
 
-      <div style={logoStyle}>
+      <div style={logoStyle} className='px-xl'>
         <LogoIcon />
         <p>Sky Bridge</p>
       </div>
 
-      <div className="hidden tablet:flex items-center gap-xl text-h1">
+      <div className="hidden tablet:flex items-center gap-xl text-h1 px-xl">
         <a href="#">Билеты</a>
         <a href="#">Расписание рейсов</a>
         <a href="#">Услуги</a>
@@ -64,13 +63,12 @@ const Header = () => {
         {/* Add the user account icon here */}
       </div>
 
-      <div className={`flex tablet:hidden items-end mr-3xl  ${isMenuOpen ? 'flex-col' : 'hidden'}`}>
-        <a href="#" className="mb-xs">Билеты</a>
-        <a href="#" className="mb-xs">Услуги</a>
-        <a href="#" className="mb-xs">О нас</a>
-        <a href="#" className="mb-xs">Маршруты</a>
-        <a href="#" className="mb-xs">Расписание рейсов</a>
-        <a href="#" className="mb-xs">Личный кабинет</a>
+      <div className={`flex text-h1 tablet:hidden items-end mr-4xl  ${isMenuOpen ? 'flex-col' : 'hidden'}`}>
+        <a href="#" className="mb-m mt-3xl">Билеты</a>
+        <a href="#" className="mb-m">Услуги</a>
+        <a href="#" className="mb-m">О нас</a>
+        <a href="#" className="mb-m">Маршруты</a>
+        <a href="#" className="mb-m">Расписание рейсов</a>
       </div>
     </div>
   )

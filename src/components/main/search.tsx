@@ -39,9 +39,7 @@ const Search = () => {
     alignItems: 'center',
     borderRadius: '20px',
     background: 'rgb(241, 249, 252, 0.7)',
-    maxWidth: '1300px',
     opacity: '0.9',
-    height: '120px',
   };
 
   const inputFieldStyle = {
@@ -78,9 +76,9 @@ const Search = () => {
   };
 
   return (
-    <div className='mt-5xl'>
+    <div className='mt-5xl px-l '>
       <h2 className='text-gray-1 text-display-2 font-semibold'>Поиск билетов</h2>
-      <div style={{ ...inputStyle, margin: '20px auto' }} className='pr-[40px] pl-[50px]'>
+      <div style={{ ...inputStyle, margin: '20px auto' }} className='pr-[40px] pl-[35px] max-w-[1300px] h-[120px] '>
       <Select
         options={optionsFrom}
         placeholder='Откуда'
@@ -89,10 +87,11 @@ const Search = () => {
           DropdownIndicator: CustomDropdownIndicator,
         }}
         name='from'
-        inputId={'0'} // Преобразуем число в строку здесь
+        inputId={'0'}
       />
 
         <Select
+          className=''
           options={optionsTo}
           placeholder='Куда'
           styles={selectStyles}

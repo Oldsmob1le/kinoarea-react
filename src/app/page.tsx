@@ -5,6 +5,7 @@ import Popular from '@/components/main/slider/popular';
 export default function Home() {
   return (
       <>
+        <Search />
       </>
   );
 }

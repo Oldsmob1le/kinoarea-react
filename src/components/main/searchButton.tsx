@@ -6,7 +6,7 @@ const SearchButton = () => {
     width: '190px',
     height: '45px',
     borderRadius: '10px',
-    marginLeft: '30px',
+    marginLeft: '20px',
     color: 'rgba(3, 102, 214, 0.8)',
   };
 
