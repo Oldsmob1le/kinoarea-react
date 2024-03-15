@@ -53,7 +53,6 @@ const Search = () => {
   const selectStyles = {
     control: (provided: any, state: any) => ({
       ...provided,
-      width: '190px',
       height: '44px',
       margin: '8px',
       cursor: 'text',
@@ -63,6 +62,7 @@ const Search = () => {
       '&:hover': {
         border: 'none',
       },
+      
     }),
     menuIsOpen: (provided: any) => ({
       ...provided,
@@ -76,22 +76,22 @@ const Search = () => {
   };
 
   return (
-    <div className='mt-5xl px-l '>
+    <div className='mt-5xl px-l'>
       <h2 className='text-gray-1 text-display-2 font-semibold'>Поиск билетов</h2>
-      <div style={{ ...inputStyle, margin: '20px auto' }} className='pr-[40px] pl-[35px] max-w-[1300px] h-[120px] '>
-      <Select
-        options={optionsFrom}
-        placeholder='Откуда'
-        styles={selectStyles}
-        components={{
-          DropdownIndicator: CustomDropdownIndicator,
-        }}
-        name='from'
-        inputId={'0'}
-      />
-
+      <div style={inputStyle} className='pr-[40px] pl-[35px] max-w-[1300px] h-[400px] mobile:h-[260px] tablet-s:h-[150px] tablet:h-[120px] flex flex-wrap justify-center'>
         <Select
-          className=''
+          options={optionsFrom}
+          placeholder='Откуда'
+          styles={selectStyles}
+          className='w-[250px] tablet-s:w-[200px]'
+          components={{
+            DropdownIndicator: CustomDropdownIndicator,
+          }}
+          name='from'
+          inputId={'0'}
+        />
+        <Select
+          className='w-[250px] tablet-s:w-[200px]'
           options={optionsTo}
           placeholder='Куда'
           styles={selectStyles}
@@ -104,12 +104,13 @@ const Search = () => {
           onChange={(date: Date) => setSelectedDate(date)}
           placeholderText='Даты'
           dateFormat='dd.MM.yyyy'
-          customInput={<input style={inputFieldStyle} className='outline-0' />}
+          customInput={<input style={inputFieldStyle} className='outline-0 w-[230px] tablet-s:w-[200px]' />}
         />
         <Select
           options={passengerOptions}
           placeholder='Пассажиры'
           styles={selectStyles}
+          className='w-[250px] tablet-s:w-[200px]'
           value={selectedPassengers}
           onChange={(selectedOption) => setSelectedPassengers(selectedOption)}
         />

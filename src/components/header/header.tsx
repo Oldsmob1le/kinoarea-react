@@ -60,7 +60,6 @@ const Header = () => {
         <button onClick={toggleMenu}>
           <MenuIcon />
         </button>
-        {/* Add the user account icon here */}
       </div>
 
       <div className={`flex text-h1 tablet:hidden items-end mr-4xl  ${isMenuOpen ? 'flex-col' : 'hidden'}`}>
