@@ -1,5 +1,6 @@
 'use client';
-import React, { useState } from 'react';
+// В компоненте Search
+import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -13,26 +14,36 @@ const CustomDropdownIndicator = (props: any) => {
   return null;
 };
 
-const optionsFrom = [
-  { value: 'city1', label: 'Город 1' },
-  { value: 'city2', label: 'Город 2' },
-];
-
-const optionsTo = [
-  { value: 'cityA', label: 'Город A' },
-  { value: 'cityB', label: 'Город B' },
-];
-
-const passengerOptions = [
-  { value: 1, label: '1' },
-  { value: 2, label: '2' },
-  { value: 3, label: '3' },
-  { value: 4, label: '4' },
-];
-
 const Search = () => {
+  const [origin, setOrigin] = useState('');
+  const [destination, setDestination] = useState('');
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedPassengers, setSelectedPassengers] = useState<{ value: number; label: string } | null>(null);
+  const [optionsFrom, setOptionsFrom] = useState<any[]>([]);
+  const [optionsTo, setOptionsTo] = useState<any[]>([]);
+  const [passengerOptions, setPassengerOptions] = useState<any[]>([]);
+
+  useEffect(() => {
+    fetchOptions();
+  }, []);
+
+  const fetchOptions = async () => {
+    try {
+      const fromResponse = await fetch('http://kinoarea-react/src/api/get_destination_options.php');
+      const fromData = await fromResponse.json();
+      setOptionsFrom(fromData);
+
+      const toResponse = await fetch('http://kinoarea-react/src/api/get_destination_options.php');
+      const toData = await toResponse.json();
+      setOptionsTo(toData);
+
+      const passengersResponse = await fetch('http://kinoarea-react/src/api/get_passenger_options.php');
+      const passengersData = await passengersResponse.json();
+      setPassengerOptions(passengersData);
+    } catch (error) {
+      console.error('Error fetching options:', error);
+    }
+  };
 
   const inputStyle = {
     display: 'flex',
@@ -53,6 +64,7 @@ const Search = () => {
   const selectStyles = {
     control: (provided: any, state: any) => ({
       ...provided,
+      width: '190px',
       height: '44px',
       margin: '8px',
       cursor: 'text',
@@ -62,7 +74,6 @@ const Search = () => {
       '&:hover': {
         border: 'none',
       },
-      
     }),
     menuIsOpen: (provided: any) => ({
       ...provided,
@@ -76,41 +87,42 @@ const Search = () => {
   };
 
   return (
-    <div className='mt-5xl px-l'>
+    <div className='mt-5xl px-l '>
       <h2 className='text-gray-1 text-display-2 font-semibold'>Поиск билетов</h2>
-      <div style={inputStyle} className='pr-[40px] pl-[35px] max-w-[1300px] h-[400px] mobile:h-[260px] tablet-s:h-[150px] tablet:h-[120px] flex flex-wrap justify-center'>
+      <div style={{ ...inputStyle, margin: '20px auto' }} className='pr-[40px] pl-[35px] max-w-[1300px] h-[120px] '>
         <Select
           options={optionsFrom}
           placeholder='Откуда'
           styles={selectStyles}
-          className='w-[250px] tablet-s:w-[200px]'
           components={{
             DropdownIndicator: CustomDropdownIndicator,
           }}
           name='from'
           inputId={'0'}
+          onChange={(option: any) => setOrigin(option.value)}
         />
+
         <Select
-          className='w-[250px] tablet-s:w-[200px]'
+          className=''
           options={optionsTo}
           placeholder='Куда'
           styles={selectStyles}
           components={{
             DropdownIndicator: CustomDropdownIndicator,
           }}
+          onChange={(option: any) => setDestination(option.value)}
         />
         <DatePicker
           selected={selectedDate}
           onChange={(date: Date) => setSelectedDate(date)}
           placeholderText='Даты'
           dateFormat='dd.MM.yyyy'
-          customInput={<input style={inputFieldStyle} className='outline-0 w-[230px] tablet-s:w-[200px]' />}
+          customInput={<input style={inputFieldStyle} className='outline-0' />}
         />
         <Select
           options={passengerOptions}
           placeholder='Пассажиры'
           styles={selectStyles}
-          className='w-[250px] tablet-s:w-[200px]'
           value={selectedPassengers}
           onChange={(selectedOption) => setSelectedPassengers(selectedOption)}
         />
