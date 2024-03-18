@@ -1,4 +1,6 @@
 <?php
+
+header("Access-Control-Allow-Origin: *");
 // Варианты количества пассажиров
 $passengerOptions = array(
     array('value' => 1, 'label' => '1'),
