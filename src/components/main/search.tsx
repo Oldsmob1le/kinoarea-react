@@ -1,5 +1,4 @@
 'use client';
-// В компоненте Search
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import DatePicker from 'react-datepicker';
@@ -7,8 +6,8 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { Shuffle } from '@/ui/icons';
 import SearchButton from './searchButton';
 
-const CustomDropdownIndicator = (props: any) => {
-  if (props.selectProps.name === 'from' && props.selectProps.inputId === 0) {
+const CustomDropdownIndicator = (props) => {
+  if (props.selectProps.name === 'from' && props.selectProps.inputId === '0') {
     return <Shuffle style={{ marginLeft: '-40px', marginTop: '2px' }} />;
   }
   return null;
@@ -17,11 +16,11 @@ const CustomDropdownIndicator = (props: any) => {
 const Search = () => {
   const [origin, setOrigin] = useState('');
   const [destination, setDestination] = useState('');
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-  const [selectedPassengers, setSelectedPassengers] = useState<{ value: number; label: string } | null>(null);
-  const [optionsFrom, setOptionsFrom] = useState<any[]>([]);
-  const [optionsTo, setOptionsTo] = useState<any[]>([]);
-  const [passengerOptions, setPassengerOptions] = useState<any[]>([]);
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedPassengers, setSelectedPassengers] = useState(null);
+  const [optionsFrom, setOptionsFrom] = useState([]);
+  const [optionsTo, setOptionsTo] = useState([]);
+  const [passengerOptions, setPassengerOptions] = useState([]);
 
   useEffect(() => {
     fetchOptions();
@@ -33,7 +32,7 @@ const Search = () => {
       const fromData = await fromResponse.json();
       setOptionsFrom(fromData);
 
-      const toResponse = await fetch('http://kinoarea-react/src/api/get_destination_options.php');
+      const toResponse = await fetch('http://kinoarea-react/src/api/get_origin_options.php');
       const toData = await toResponse.json();
       setOptionsTo(toData);
 
@@ -62,7 +61,7 @@ const Search = () => {
   };
 
   const selectStyles = {
-    control: (provided: any, state: any) => ({
+    control: (provided, state) => ({
       ...provided,
       width: '190px',
       height: '44px',
@@ -75,12 +74,12 @@ const Search = () => {
         border: 'none',
       },
     }),
-    menuIsOpen: (provided: any) => ({
+    menuIsOpen: (provided) => ({
       ...provided,
       boxShadow: 'none',
     }),
     indicatorSeparator: () => ({ display: 'none' }),
-    placeholder: (provided: any) => ({
+    placeholder: (provided) => ({
       ...provided,
       marginLeft: '10px',
     }),
@@ -98,8 +97,8 @@ const Search = () => {
             DropdownIndicator: CustomDropdownIndicator,
           }}
           name='from'
-          inputId={'0'}
-          onChange={(option: any) => setOrigin(option.value)}
+          inputId='0'
+          onChange={(option) => setOrigin(option.value)}
         />
 
         <Select
@@ -110,11 +109,11 @@ const Search = () => {
           components={{
             DropdownIndicator: CustomDropdownIndicator,
           }}
-          onChange={(option: any) => setDestination(option.value)}
+          onChange={(option) => setDestination(option.value)}
         />
         <DatePicker
           selected={selectedDate}
-          onChange={(date: Date) => setSelectedDate(date)}
+          onChange={(date) => setSelectedDate(date)}
           placeholderText='Даты'
           dateFormat='dd.MM.yyyy'
           customInput={<input style={inputFieldStyle} className='outline-0' />}
