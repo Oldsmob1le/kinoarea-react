@@ -1,10 +1,11 @@
 'use client';
+// search.tsx
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { Shuffle } from '@/ui/icons';
 import SearchButton from './searchButton';
+import { Shuffle } from '@/ui/icons';
 
 const CustomDropdownIndicator = (props: any) => {
   if (props.selectProps.name === 'from' && props.selectProps.inputId === 0) {
@@ -13,7 +14,11 @@ const CustomDropdownIndicator = (props: any) => {
   return null;
 };
 
-const Search = () => {
+interface SearchProps {
+  onSearch: (origin: string, destination: string, date: string, passengers: number) => void;
+}
+
+const Search: React.FC<SearchProps> = ({ onSearch }) => {
   const [origin, setOrigin] = useState('');
   const [destination, setDestination] = useState('');
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
@@ -21,14 +26,14 @@ const Search = () => {
   const [optionsFrom, setOptionsFrom] = useState<any[]>([]);
   const [optionsTo, setOptionsTo] = useState<any[]>([]);
   const [passengerOptions, setPassengerOptions] = useState<any[]>([]);
-
+  
   useEffect(() => {
     fetchOptions();
   }, []);
 
   const fetchOptions = async () => {
     try {
-      const fromResponse = await fetch('http://kinoarea-react/src/api/get_destination_options.php');
+      const fromResponse = await fetch('http://kinoarea-react/src/api/get_origin_options.php');
       const fromData = await fromResponse.json();
       const formattedFromOptions = fromData.map((option: string) => ({
         value: option,
@@ -36,7 +41,7 @@ const Search = () => {
       }));
       setOptionsFrom(formattedFromOptions);
   
-      const toResponse = await fetch('http://kinoarea-react/src/api/get_origin_options.php');
+      const toResponse = await fetch('http://kinoarea-react/src/api/get_destination_options.php');
       const toData = await toResponse.json();
       const formattedToOptions = toData.map((option: string) => ({
         value: option,
@@ -96,7 +101,38 @@ const Search = () => {
       marginLeft: '10px',
     }),
   };
+  
 
+  const handleSearch = () => {
+    if (!origin) {
+      console.error('Please fill in the "From" field');
+      return;
+    }
+  
+    if (!destination) {
+      console.error('Please fill in the "To" field');
+      return;
+    }
+  
+    if (!selectedDate) {
+      console.error('Please select a date');
+      return;
+    }
+  
+    if (!selectedPassengers) {
+      console.error('Please select the number of passengers');
+      return;
+    }
+  
+    // Проверяем значения переменных перед вызовом onSearch
+    console.log('Origin:', origin);
+    console.log('Destination:', destination);
+    console.log('Selected Date:', selectedDate);
+    console.log('Selected Passengers:', selectedPassengers);
+  
+    // Вызываем onSearch только если все переменные определены
+    onSearch(origin, destination, selectedDate.toISOString(), selectedPassengers.value);
+  };
   return (
     <div className='mt-5xl px-l '>
       <h2 className='text-gray-1 text-display-2 font-semibold'>Поиск билетов</h2>
@@ -137,7 +173,7 @@ const Search = () => {
           value={selectedPassengers}
           onChange={(selectedOption) => setSelectedPassengers(selectedOption)}
         />
-        <SearchButton />
+        <SearchButton onClick={handleSearch} />
       </div>
     </div>
   );

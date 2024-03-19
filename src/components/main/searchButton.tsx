@@ -1,6 +1,10 @@
 import React from 'react';
 
-const SearchButton = () => {
+interface SearchButtonProps {
+  onClick: () => void;
+}
+
+const SearchButton: React.FC<SearchButtonProps> = ({ onClick }) => {
   const buttonStyles = {
     background: 'white',
     width: '190px',
@@ -11,10 +15,10 @@ const SearchButton = () => {
   };
 
   return (
-    <button style={buttonStyles}>
+    <button style={buttonStyles} onClick={onClick}>
       Найти билеты
     </button>
   );
-}
+};
 
 export default SearchButton;

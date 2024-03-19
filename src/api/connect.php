@@ -4,44 +4,28 @@ header("Access-Control-Allow-Origin: *");
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "SKY"; // Не забудьте заменить на имя вашей базы данных
+$dbname = "SKY";
 
-// Создание соединения
+// Создаем соединение с базой данных
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Проверка соединения
+// Проверяем соединение
 if ($conn->connect_error) {
-    die("Не удалось подключиться: " . $conn->connect_error);
+    die("Connection failed: " . $conn->connect_error);
 }
 
-// Получение данных из параметров поиска (предположим, что они передаются через GET-запрос)
-$origin = $_GET['origin']; // Откуда
-$destination = $_GET['destination']; // Куда
-$passengers = $_GET['passengers']; // Количество пассажиров
-$date = $_GET['date']; // Дата билета
-
-// Подготовка SQL-запроса с учетом параметров поиска
-$sql = "SELECT flight_number, destination, origin, departure_time, arrival_time, price 
-        FROM flights 
-        WHERE origin = '$origin' 
-        AND destination = '$destination' 
-        AND available_seats >= $passengers 
-        AND departure_date = '$date'";
+// Подготовка SQL-запроса для выборки всех данных из таблицы
+$sql = "SELECT t.flight_number, f.destination, f.origin, f.departure_time, f.arrival_time, t.price
+        FROM tickets t
+        JOIN flights f ON t.flight_number = f.flight_number";
 
 $result = $conn->query($sql);
 
+// Обработка результата запроса
 $flights = array();
 if ($result->num_rows > 0) {
-    // Формирование массива с результатами запроса
     while($row = $result->fetch_assoc()) {
-        $flights[] = array(
-            'flight_number' => $row['flight_number'],
-            'destination' => $row['destination'],
-            'origin' => $row['origin'],
-            'departure_time' => $row['departure_time'],
-            'arrival_time' => $row['arrival_time'],
-            'price' => $row['price']
-        );
+        $flights[] = $row;
     }
 }
 
