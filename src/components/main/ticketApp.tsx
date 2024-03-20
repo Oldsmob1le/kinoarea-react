@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import Search from './search';
+import { Tickets } from '@/ui/icons';
 
 const TicketApp = () => {
   const [ticket, setTicket] = useState<any | null>(null);
@@ -23,7 +24,7 @@ const TicketApp = () => {
       const data = await response.json();
       setTicket(data.find((ticket: any) => ticket.origin === origin && ticket.destination === destination)); // Находим первый билет, соответствующий параметрам
     } catch (error) {
-      console.error('Error fetching tickets:', error);
+      console.error('Билеты не найдены:', error);
     }
   };
 
@@ -43,22 +44,44 @@ const TicketApp = () => {
     }
   }, [searchParams]);
 
+
+  const inputStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    borderRadius: '20px',
+    background: 'rgb(241, 249, 252, 0.9)',
+    opacity: '0.9',
+  };
+
   return (
     <div>
       <Search onSearch={handleSearch} /> 
-      <h1 className='text-gray-3-lines'>Билеты</h1>
       {searchPerformed ? (
-        ticket ? ( // Проверяем, есть ли выбранный билет
-          <ul>
-            <li key={ticket.flight_number}>
-              <div>Номер рейса: {ticket.flight_number}</div>
-              <div>Откуда: {ticket.origin}</div>
-              <div>Куда: {ticket.destination}</div>
-              <div>Время отправления: {ticket.departure_time}</div>
-              <div>Время прибытия: {ticket.arrival_time}</div>
-              <div>Цена: {ticket.price}</div>
-            </li>
-          </ul>
+        ticket ? ( 
+            <div key={ticket.flight_number} style={inputStyle} className=' max-w-[1000px] max-h-[600px] h-[200px] m-auto p-l'>
+              <div className="flex items-center">
+              <div className="flex flex-col items-center">
+              <p>{ticket.departure_time}</p>
+              <p>{ticket.origin}</p>
+              <p>{searchParams.date}</p>
+              </div>
+              <div className="mb-4xl">
+                <Tickets />
+              </div>
+              <div className="flex flex-col items-center">
+              <p>{ticket.arrival_time}</p>
+              <p>{ticket.destination}</p>
+              <p>{searchParams.date}</p>
+              </div>
+              <div className="flex items-center">
+              <div className="bg-gray-3 h-[200px] w-[2px]"></div>
+                <div className="flex flex-col items-center justify-center">
+                  <p>{ticket.price}</p>
+                  <p>{searchParams.passengers}</p>
+                </div>
+              </div>
+              </div>
+              </div>
         ) : (
           <p>Нет доступных билетов</p>
         )

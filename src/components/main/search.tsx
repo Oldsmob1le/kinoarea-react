@@ -65,7 +65,7 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
     display: 'flex',
     alignItems: 'center',
     borderRadius: '20px',
-    background: 'rgb(241, 249, 252, 0.7)',
+    background: 'rgb(241, 249, 252, 0.9)',
     opacity: '0.9',
   };
 
@@ -105,30 +105,30 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
 
   const handleSearch = () => {
     if (!origin) {
-      console.error('Please fill in the "From" field');
+      console.error('Пожалуйста, заполните поле "Откуда"');
       return;
     }
   
     if (!destination) {
-      console.error('Please fill in the "To" field');
+      console.error('Пожалуйста, заполните поле "Куда"');
       return;
     }
   
     if (!selectedDate) {
-      console.error('Please select a date');
+      console.error('Пожалуйста, укажите дату');
       return;
     }
   
     if (!selectedPassengers) {
-      console.error('Please select the number of passengers');
+      console.error('Пожалуйста, укажите количество пассажиров');
       return;
     }
   
     // Проверяем значения переменных перед вызовом onSearch
-    console.log('Origin:', origin);
-    console.log('Destination:', destination);
-    console.log('Selected Date:', selectedDate);
-    console.log('Selected Passengers:', selectedPassengers);
+    console.log('Откуда:', origin);
+    console.log('Куда:', destination);
+    console.log('Выбранная дата:', selectedDate);
+    console.log('Количество пассжирова:', selectedPassengers);
   
     // Вызываем onSearch только если все переменные определены
     onSearch(origin, destination, selectedDate.toISOString(), selectedPassengers.value);
@@ -150,7 +150,6 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
         />
 
         <Select
-          className=''
           options={optionsTo}
           placeholder='Куда'
           styles={selectStyles}
