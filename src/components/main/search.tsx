@@ -1,11 +1,11 @@
 'use client';
-// search.tsx
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import SearchButton from './searchButton';
 import { Shuffle } from '@/ui/icons';
+import 'moment/locale/ru';
 
 const CustomDropdownIndicator = (props: any) => {
   if (props.selectProps.name === 'from' && props.selectProps.inputId === 0) {
@@ -61,12 +61,17 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
     }
   };
 
-  const inputStyle = {
+  const inputContainerStyle = {
     display: 'flex',
     alignItems: 'center',
     borderRadius: '20px',
-    background: 'rgb(241, 249, 252, 0.9)',
+    background: 'rgba(241, 249, 252, 0.9)',
     opacity: '0.9',
+    margin: '20px auto',
+    paddingRight: '40px',
+    paddingLeft: '35px',
+    maxWidth: '1300px',
+    height: '120px',
   };
 
   const inputFieldStyle = {
@@ -101,7 +106,6 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
       marginLeft: '10px',
     }),
   };
-  
 
   const handleSearch = () => {
     if (!origin) {
@@ -124,19 +128,18 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
       return;
     }
   
-    // Проверяем значения переменных перед вызовом onSearch
     console.log('Откуда:', origin);
     console.log('Куда:', destination);
     console.log('Выбранная дата:', selectedDate);
-    console.log('Количество пассжирова:', selectedPassengers);
+    console.log('Количество пассажиров:', selectedPassengers);
   
-    // Вызываем onSearch только если все переменные определены
     onSearch(origin, destination, selectedDate.toISOString(), selectedPassengers.value);
   };
+
   return (
     <div className='mt-5xl px-l '>
       <h2 className='text-gray-1 text-display-2 font-semibold'>Поиск билетов</h2>
-      <div style={{ ...inputStyle, margin: '20px auto' }} className='pr-[40px] pl-[35px] max-w-[1300px] h-[120px] '>
+      <div style={inputContainerStyle} className='input-container'>
         <Select
           options={optionsFrom}
           placeholder='Откуда'
@@ -163,7 +166,8 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
           onChange={(date: Date) => setSelectedDate(date)}
           placeholderText='Даты'
           dateFormat='dd.MM.yyyy'
-          customInput={<input style={inputFieldStyle} className='outline-0' />}
+          withPortal
+          customInput={<input style={inputFieldStyle} className='input-field outline-0' />}
         />
         <Select
           options={passengerOptions}

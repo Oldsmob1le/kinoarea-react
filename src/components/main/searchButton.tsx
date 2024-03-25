@@ -12,6 +12,7 @@ const SearchButton: React.FC<SearchButtonProps> = ({ onClick }) => {
     borderRadius: '10px',
     marginLeft: '20px',
     color: 'rgba(3, 102, 214, 0.8)',
+    fontWeight: '500',
   };
 
   return (

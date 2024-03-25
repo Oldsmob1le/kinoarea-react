@@ -1,9 +1,9 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import Search from './search';
+import Search from './main/search';
 import { Tickets } from '@/ui/icons';
 import moment from 'moment';
-import TicketButton from './ticketButton';
+import TicketButton from './main/ticketButton';
 
 const TicketApp = () => {
   const [ticket, setTicket] = useState<any | null>(null);

@@ -56,8 +56,8 @@ const Header = () => {
       </div>
 
       <div className="tablet:hidden absolute top-7 right-7 flex items-center gap-xs">
-      <UserIcon />
-        <button onClick={toggleMenu}>
+        <UserIcon />
+        <button onClick={toggleMenu} title="Toggle Menu">
           <MenuIcon />
         </button>
       </div>
